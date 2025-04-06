@@ -1,0 +1,78 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.game-status {
+  @include flex-column;
+  align-items: center;
+  gap: $spacing-unit;
+  padding: $spacing-unit * 2;
+  @include glass-effect;
+  border-radius: $spacing-unit;
+  margin-bottom: $spacing-unit * 2;
+
+  &__score {
+    font-size: 2rem;
+    font-weight: bold;
+    color: $color-text;
+    @include text-shadow;
+
+    &--update {
+      animation: scoreUpdate $animation-speed-normal ease-out;
+    }
+  }
+
+  &__multiplier {
+    color: map-get($atom-colors, 'plus');
+    font-size: 1.2rem;
+
+    &--active {
+      animation: pulseText $animation-speed-normal infinite;
+    }
+  }
+
+  &__high-score {
+    color: rgba($color-text, 0.8);
+    font-size: 0.9rem;
+    margin-top: $spacing-unit;
+  }
+}
+
+// Score update animation
+@keyframes scoreUpdate {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+    color: map-get($atom-colors, 'plus');
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+// Pulsing text animation
+@keyframes pulseText {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+// Responsive adjustments
+@include respond-to($breakpoint-sm) {
+  .game-status {
+    flex-direction: row;
+    justify-content: center;
+    gap: $spacing-unit * 4;
+
+    &__high-score {
+      margin-top: 0;
+    }
+  }
+}

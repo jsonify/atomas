@@ -1,0 +1,38 @@
+// Colors
+$color-primary: #2196f3;
+$color-secondary: #ff4081;
+$color-background: #121212;
+$color-surface: #1e1e1e;
+$color-text: #ffffff;
+
+// Atom Colors
+$atom-colors: (
+  'normal': #64b5f6,
+  'plus': #81c784,
+  'minus': #e57373,
+  'special': #ba68c8
+);
+
+// Sizes
+$atom-size: 60px;
+$board-size: 400px;
+$spacing-unit: 8px;
+
+// Animation Timings
+$animation-speed-fast: 150ms;
+$animation-speed-normal: 300ms;
+$animation-speed-slow: 500ms;
+
+// Breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+// Z-index layers
+$z-index: (
+  'base': 1,
+  'atom': 2,
+  'controls': 3,
+  'overlay': 4
+);

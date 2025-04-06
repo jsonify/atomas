@@ -1,0 +1,88 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.atom {
+  @include atom-base;
+  background-color: map-get($atom-colors, 'normal');
+  
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+  }
+  
+  &--plus {
+    background-color: map-get($atom-colors, 'plus');
+  }
+  
+  &--minus {
+    background-color: map-get($atom-colors, 'minus');
+  }
+  
+  &--special {
+    background-color: map-get($atom-colors, 'special');
+    animation: pulse 2s infinite;
+  }
+
+  // Inner elements
+  &__value {
+    @include fluid-type($breakpoint-sm, $breakpoint-lg, 18px, 24px);
+    color: $color-text;
+    font-weight: bold;
+    @include text-shadow;
+  }
+
+  &__element {
+    position: absolute;
+    bottom: 5px;
+    font-size: 12px;
+    color: rgba($color-text, 0.8);
+  }
+}
+
+// Animations
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(map-get($atom-colors, 'special'), 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(map-get($atom-colors, 'special'), 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(map-get($atom-colors, 'special'), 0);
+  }
+}
+
+// Placement animation
+@keyframes placeAtom {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// Combination animation
+@keyframes combine {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+.atom-enter {
+  animation: placeAtom $animation-speed-normal forwards;
+}
+
+.atom-combine {
+  animation: combine $animation-speed-slow forwards;
+}

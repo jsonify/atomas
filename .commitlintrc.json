@@ -1,0 +1,31 @@
+{
+  "/*": "FILE: .commitlintrc.json",
+  "/*": "CREATED: 2025-04-05 16:26:39",
+  "/*": "PURPOSE: Configures commit message linting to enforce conventional commits format",
+  "extends": ["@commitlint/config-conventional"],
+  "rules": {
+    "type-enum": [
+      2,
+      "always",
+      [
+        "feat",
+        "fix",
+        "docs",
+        "style",
+        "refactor",
+        "perf",
+        "test",
+        "build",
+        "ci",
+        "chore",
+        "revert"
+      ]
+    ],
+    "type-case": [2, "always", "lower-case"],
+    "type-empty": [2, "never"],
+    "subject-case": [2, "always", "lower-case"],
+    "subject-empty": [2, "never"],
+    "subject-full-stop": [2, "never", "."],
+    "scope-case": [2, "always", "lower-case"]
+  }
+}

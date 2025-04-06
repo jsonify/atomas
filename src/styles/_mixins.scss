@@ -1,0 +1,75 @@
+// Flexbox utilities
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// Responsive breakpoints
+@mixin respond-to($breakpoint) {
+  @media screen and (min-width: $breakpoint) {
+    @content;
+  }
+}
+
+// Animations
+@mixin animate($property, $duration: $animation-speed-normal, $timing: ease-in-out) {
+  transition: $property $duration $timing;
+}
+
+@mixin keyframe-animation($name, $duration: $animation-speed-normal, $timing: ease-in-out, $iteration: 1) {
+  animation: $name $duration $timing $iteration;
+}
+
+// Circle positioning
+@mixin circle-position($radius, $angle) {
+  position: absolute;
+  transform: rotate($angle) translateX($radius);
+}
+
+// Atom styles
+@mixin atom-base {
+  width: $atom-size;
+  height: $atom-size;
+  border-radius: 50%;
+  @include flex-center;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  @include animate(all);
+}
+
+// Glass effect
+@mixin glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+// Text styles
+@mixin text-shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+// Responsive font size
+@mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
+  $u1: unit($min-vw);
+  $u2: unit($max-vw);
+  $u3: unit($min-font-size);
+  $u4: unit($max-font-size);
+
+  @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
+    font-size: $min-font-size;
+    @media screen and (min-width: $min-vw) {
+      font-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
+    }
+    @media screen and (min-width: $max-vw) {
+      font-size: $max-font-size;
+    }
+  }
+}
